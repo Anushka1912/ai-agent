@@ -100,3 +100,6 @@ SafetyBot is a project aimed at enhancing women's safety in India by providing u
 ## Conclusion
 SafetyBot is designed as a robust, scalable, and interactive AI assistant for women's safety, leveraging state-of-the-art retrieval and generation techniques. Future improvements include expanding data sources, improving multilingual support, and enhancing real-time event tracking capabilities.
 
+## Frontend
+![Screenshot 2025-03-17 100617](https://github.com/user-attachments/assets/085e0e8e-24b0-4044-b428-36c339e2b913)
+
