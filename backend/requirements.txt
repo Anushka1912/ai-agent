@@ -1,0 +1,9 @@
+google-cloud-bigquery
+google-cloud-storage
+rdflib
+pandas
+google-generativeai
+hnswlib
+numpy
+requests
+flask

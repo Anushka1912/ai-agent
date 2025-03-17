@@ -1,0 +1,20 @@
+.env
+
+# Ignore Google Cloud credentials
+*.json
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+*.bak
+.DS_Store
+
+# Ignore dependency caches
+pip-log.txt
+pip-delete-this-directory.txt
