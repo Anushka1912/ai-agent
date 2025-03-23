@@ -8,7 +8,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState(null);
   const chatRef = useRef(null);
-  const endpoint = 'http://localhost:8080/safety_bot'; // Local Flask endpoint
+  const endpoint = process.env.REACT_APP_URL; 
 
   const mockCharacters = [
     {
@@ -54,21 +54,31 @@ const App = () => {
       });
 
       const { response: botResponse, intro } = response.data;
+      let botMessageText = botResponse;
+
+      // If intro is provided (first response), use it as a separate message
+      if (intro) {
+        setMessages((prev) => [
+          ...prev,
+          { text: intro, isBot: true, timestamp: new Date() },
+          { text: botResponse, isBot: true, timestamp: new Date() }
+        ]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          { text: botMessageText, isBot: true, timestamp: new Date() }
+        ]);
+      }
 
       if (input.toLowerCase() === "exit") {
         setCurrentCharacter(null);
       }
-
-      let responseText = botResponse;
-      if (intro && messages.length === 2) {
-        responseText = intro;
-      }
-
-      setMessages((prev) => [...prev, { text: responseText, isBot: true, timestamp: new Date() }]);
     } catch (error) {
-      console.error('Error:', error);
-      let errorText = `${currentCharacter.name}: Oops, something went wrong, pal! Try again?`;
-      setMessages((prev) => [...prev, { text: errorText, isBot: true, timestamp: new Date() }]);
+      console.error('Error calling backend:', error);
+      setMessages((prev) => [
+        ...prev,
+        { text: `${currentCharacter.name}: Oops, something went wrong! Let’s try again—I’m here to help!`, isBot: true, timestamp: new Date() }
+      ]);
     } finally {
       setIsLoading(false);
     }
